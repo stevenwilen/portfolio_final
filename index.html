@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Steven Wilen · QR listing cards, Ponte Vedra</title>
-<meta name="description" content="QR cards for real estate listings in Ponte Vedra and Nocatee. Your listing photo, your name, brokerage and number, and a code that opens wherever you point it. $40 for 50.">
+<meta name="description" content="Printed QR cards that take buyers to your listing page. 50 cards and a listing page for $90, cards only $40. Ponte Vedra and Nocatee.">
 <link rel="canonical" href="https://stevenwilen.dev/">
 <meta name="theme-color" content="#FAF8F5">
 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
@@ -13,8 +13,8 @@
 <link rel="manifest" href="/site.webmanifest">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://stevenwilen.dev/">
-<meta property="og:title" content="QR cards buyers scan at your open house.">
-<meta property="og:description" content="Designed with your listing photo, your name, brokerage and number, and a QR code that opens wherever you point it. $40 for 50.">
+<meta property="og:title" content="Your listing. In their hands.">
+<meta property="og:description" content="Printed QR cards that take buyers to your listing page. 50 cards and a listing page for $90, cards only $40. Ponte Vedra and Nocatee.">
 <meta property="og:image" content="https://stevenwilen.dev/og-image.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
@@ -24,8 +24,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="styles.css">
-<script type="application/ld+json">
+<link rel="stylesheet" href="styles.css"><script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
@@ -44,12 +43,12 @@
         { "@type": "AdministrativeArea", "name": "St. Johns County, Florida" }
       ],
       "address": { "@type": "PostalAddress", "addressLocality": "Ponte Vedra", "addressRegion": "FL", "addressCountry": "US" },
-      "description": "QR cards for real estate listings: the listing photo, the agent’s name, brokerage and number, and a QR code that opens wherever the agent points it.",
+      "description": "Printed QR cards that take buyers to the agent’s listing page, and the listing page itself.",
       "founder": { "@id": "https://stevenwilen.dev/#steven" },
       "provider": { "@id": "https://stevenwilen.dev/#steven" },
       "makesOffer": [
-        { "@type": "Offer", "priceCurrency": "USD", "price": "40", "itemOffered": { "@type": "Service", "name": "QR listing cards", "description": "Fifty cards for one listing, designed with the listing photo, the agent’s name, brokerage and number, and a QR code that opens wherever the agent points it." } },
-        { "@type": "Offer", "priceCurrency": "USD", "price": "50", "itemOffered": { "@type": "Service", "name": "One-page listing site", "description": "An add-on to the cards: a single page for the listing that the QR code opens." } }
+        { "@type": "Offer", "priceCurrency": "USD", "price": "90", "itemOffered": { "@type": "Service", "name": "Cards + listing page", "description": "50 printed QR cards and a page built for the listing." } },
+        { "@type": "Offer", "priceCurrency": "USD", "price": "40", "itemOffered": { "@type": "Service", "name": "Cards only", "description": "50 printed QR cards linked to a page the agent already uses." } }
       ]
     },
     {
@@ -76,130 +75,127 @@
 </head>
 <body>
 
-<header class="site-header">
-  <a class="wordmark" href="#top"><b>Steven Wilen</b><i>·</i><span>QR Listing Cards</span></a>
-  <nav class="site-nav">
-    <a class="strong" href="#contact">Get cards</a>
-  </nav>
+<header class="nav">
+  <div class="in">
+    <a class="mark" href="#top"><b>Steven Wilen</b><span>QR cards for realtors</span></a>
+    <nav class="links">
+      <a href="#cards">The cards</a>
+      <a href="#pricing">Pricing</a>
+      <a class="q-link" href="#details" hidden>Details</a>
+      <a class="cta" href="sms:+19044000352"><span>Contact Steven</span></a>
+    </nav>
+  </div>
 </header>
 
 <main id="top">
 
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <h1 data-reveal>
-          <span class="line"><span>Cards buyers</span></span>
-          <span class="line"><span>scan at your</span></span>
-          <span class="line"><span>open house.</span></span>
-        </h1>
-        <p class="hero-sub" data-reveal data-reveal-delay="1">I&rsquo;m Steven Wilen. I design QR cards for listings &mdash; your photo, your name, your brokerage and your number, with a code that opens wherever you point it.</p>
-        <div class="hero-actions" data-reveal data-reveal-delay="2">
-          <a class="btn" href="#contact">Get cards
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
-        </div>
-      </div>
+<section class="hero wrap"><!-- LOCKED — hero approved. Do not change markup, CSS or image without asking. Snapshot: _locked/hero-v1.html -->
+  <div class="hero-copy rise">
+    <span class="lbl">Ponte Vedra + Nocatee</span>
+    <h1 class="hero-t">Your listing.<br>In their hands.</h1>
+    <p class="sub">Printed QR cards that take buyers to your listing page.</p>
+    <p class="note">I’m Steven. I make cards and listing pages for realtors, with your photos, your details and your contact info.</p>
+    <div class="hero-actions">
+      <a class="btn" href="sms:+19044000352">Text me your listing</a>
+      <a class="lnk" href="#pricing">See pricing <span class="arw" aria-hidden="true">→</span></a>
     </div>
-  </section>
+    <p class="prices"><b>50 cards + listing page&nbsp; $90</b><span>Cards only&nbsp; $40</span></p>
+  </div>
+  <figure class="hero-shot rise">
+    <img class="cut" src="/images/hero-cards.webp" width="1103" height="1064" alt="Five overlapping QR listing cards for different homes, with 2410 Osprey Cove Court in front." decoding="async">
+  </figure>
+</section>
 
-  <section class="work" id="work">
-    <div class="wrap">
-      <div class="card-row" data-reveal>
-        <img class="card-shot" src="/cards.jpg" alt="QR listing cards." loading="lazy" decoding="async">
-        <div class="card-copy">
-          <span class="eyebrow">What I make</span>
-          <h2>QR listing cards</h2>
-          <p>Fifty cards for one listing. The listing photo on it, your name, your brokerage and your number under that, and a QR code that opens wherever you want it to go &mdash; the MLS page, your site, or a page I build for the listing.</p>
-          <a class="btn btn-outline" href="https://268-harpers-mill.vercel.app/" target="_blank" rel="noopener">See a listing page
-            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-          </a>
-        </div>
-      </div>
-      <div class="price" data-reveal data-reveal-delay="1">
-        <b>$40 for 50 cards.</b>
-        <span>A one-page listing site for the code to open, +$50.</span>
-      </div>
+<section id="cards" class="wrap" style="padding-top:clamp(24px,3vw,40px)">
+  <div class="see rise">
+    <div class="see-copy">
+      <span class="lbl">What buyers see</span>
+      <h2 class="title">They scan the card. Your page opens.</h2>
+      <p>Photos, property details and a direct way to reach you, on a page built for that listing.</p>
+      <dl class="see-list">
+        <div><dt>Gallery</dt><dd>Every photo of the house.</dd></div>
+        <div><dt>Property details</dt><dd>Beds, baths, size and price.</dd></div>
+        <div><dt>Your contact info</dt><dd>Name, brokerage and number.</dd></div>
+        <div><dt>Only this listing</dt><dd>No other listings, no other agents.</dd></div>
+      </dl>
+      <a class="lnk see-mobile" href="https://guides.stevenwilen.dev/2410-osprey-cove-court">Open an example listing <span class="arw" aria-hidden="true">→</span></a>
     </div>
-  </section>
+    <div class="see-pics">
+      <img class="cut" src="/images/pair.webp" width="1120" height="1400" alt="The printed card for 2410 Osprey Cove Court in front of a phone showing the listing page’s gallery." loading="lazy" decoding="async">
+    </div>
+  </div>
+</section>
 
-  <section class="contact" id="contact">
-    <div class="contact-inner" data-reveal>
-      <span class="eyebrow">Get in touch</span>
-      <h2>Want cards for a listing?</h2>
-      <p>Send the address or a link to the listing, and where you want the code to go.</p>
-      <form class="inquiry" id="inquiry" novalidate>
-        <div class="field">
-          <label for="f-name">Name</label>
-          <input id="f-name" name="name" type="text" autocomplete="name" required>
-          <span class="err" data-for="f-name"></span>
-        </div>
-        <div class="field">
-          <label for="f-email">Email</label>
-          <input id="f-email" name="email" type="email" autocomplete="email" required>
-          <span class="err" data-for="f-email"></span>
-        </div>
-        <div class="field field--full">
-          <label for="f-details">The listing</label>
-          <textarea id="f-details" name="details" rows="3" placeholder="The address, the MLS number, or a link to the listing. Whatever you have." required></textarea>
-          <span class="hint">A link is plenty.</span>
-          <span class="err" data-for="f-details"></span>
-        </div>
-        <div class="field field--full form-actions">
-          <button class="btn" type="submit">Send
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </button>
-          <span class="form-alt">or email <a href="mailto:steven.wilen@gmail.com?subject=QR%20listing%20cards">steven.wilen@gmail.com</a></span>
-        </div>
-      </form>
-      <div class="form-sent" id="form-sent" hidden>
-        <b>Got it.</b>
-        <span>I read everything myself.</span>
-        <button class="btn btn-outline" type="button" id="form-again">Send another</button>
-      </div>
-      <div class="contact-mobile">
-        <div class="contact-mobile-actions">
-          <a class="btn" href="tel:+19044000352">
-            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            Call
-          </a>
-          <a class="btn btn-outline" href="sms:+19044000352">
-            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-            Text
-          </a>
-        </div>
-        <span class="form-alt">or email <a href="mailto:steven.wilen@gmail.com?subject=QR%20listing%20cards">steven.wilen@gmail.com</a></span>
-      </div>
+<section id="pricing" class="wrap" style="padding-top:clamp(32px,4vw,56px)">
+  <div class="head rise">
+    <span class="lbl">Choose what you need</span>
+    <h2 class="title">Simple, per-listing pricing.</h2>
+  </div>
+  <div class="packs rise">
+    <div class="pack pack--rec">
+  <div class="pack-top"><h3>Cards + listing page</h3><span class="amt">$90</span></div>
+  <span class="rec-tag">Recommended</span>
+  <p>50 printed cards and a page built for the listing.</p>
+  <a class="lnk" href="sms:+19044000352">Text me to get started <span class="arw" aria-hidden="true">→</span></a>
     </div>
-  </section>
+    <div class="pack">
+  <div class="pack-top"><h3>Cards only</h3><span class="amt">$40</span></div>
+  <p>50 printed cards linked to a page you already use.</p>
+  <a class="lnk" href="sms:+19044000352">Text me to get started <span class="arw" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+  <p class="specs rise"><span>50 cards</span><span>3.5 × 2 in</span><span>65 lb stock</span><span>QR to your chosen link</span></p>
+</section>
+
+<section id="details" class="wrap" hidden>
+  <span class="lbl rise">A few details</span>
+  <div class="ask rise">
+    <div><h3>Where does the QR code go?</h3><p>The listing page I build, or any link you already have, like your own site or the MLS listing.</p></div>
+    <div><h3>What if something is wrong on the card?</h3><p>If the mistake is mine, I reprint them for free.</p></div>
+    <div><h3>Where do you deliver?</h3><p>Around Ponte Vedra and Nocatee I drop them off. Anywhere else, I mail them.</p></div>
+  </div>
+</section>
+
+<section id="how" class="wrap how-sec">
+  <div class="head rise">
+    <span class="lbl">How it works</span>
+    <h2 class="title">Send the listing. I’ll take it from there.</h2>
+  </div>
+  <div class="work rise">
+    <div class="steps">
+      <div class="step"><span class="n">01</span><div><h3>Send the listing</h3><p>Text an address or a link. For cards only, include the QR destination.</p></div></div>
+      <div class="step"><span class="n">02</span><div><h3>Review the proof</h3><p>Check the name, number and address. Changes are fine.</p></div></div>
+      <div class="step"><span class="n">03</span><div><h3>Approve the design</h3><p>Nothing goes to print until you say “approved.”</p></div></div>
+      <div class="step"><span class="n">04</span><div><h3>Get your cards</h3><p>Local drop-off or mail.</p></div></div>
+    </div>
+    <figure class="arrive">
+      <img src="/images/hands-box.webp" width="1120" height="1147" alt="Two hands holding a kraft box of printed QR listing cards for 1780 Heron Ridge Court, pulling one card out." loading="lazy" decoding="async">
+    </figure>
+  </div>
+</section>
+
 
 </main>
 
-<footer class="site-footer">
-  <div class="wrap">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <img class="footer-avatar" src="images/steven-wilen.webp" width="144" height="144" alt="" loading="lazy" decoding="async">
-        <div>
-          <b>Steven Wilen</b>
-          <span>QR listing cards for agents on the First Coast.</span>
-        </div>
+<footer class="end" id="contact">
+  <div class="in">
+    <div class="end-top">
+      <div>
+        <h2>Have a listing in mind?</h2>
+        <p>Send me the address or a link and I’ll text you a proof.</p>
       </div>
-      <div class="footer-cols">
-        <div class="footer-col">
-          <span class="eyebrow">Site</span>
-          <a href="#work">What I make</a>
-          <a href="#contact">Contact</a>
-        </div>
-        <div class="footer-col">
-          <span class="eyebrow">Contact</span>
-          <a href="tel:+19044000352">(904) 400-0352</a>
-          <a href="mailto:steven.wilen@gmail.com">steven.wilen@gmail.com</a>
-          <span class="footer-note">Ponte Vedra &amp; Nocatee, by appointment</span>
-        </div>
+      <div class="reach">
+        <a class="num" href="sms:+19044000352">(904) 400-0352</a>
+        <a class="sms" href="sms:+19044000352"><span>Text me your listing</span><span aria-hidden="true" style="border:0;padding:0">→</span></a>
       </div>
     </div>
-    <div class="footer-bottom">© <span id="year">2026</span> Steven Wilen. All rights reserved.</div>
+    <div class="end-bar">
+      <b>Steven Wilen</b>
+      <span>QR listing cards for agents on the First Coast</span>
+      <span>Ponte Vedra &amp; Nocatee</span>
+      <span><a href="mailto:steven.wilen@gmail.com">steven.wilen@gmail.com</a></span>
+      <span>© 2026</span>
+    </div>
   </div>
 </footer>
 

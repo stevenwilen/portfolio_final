@@ -1,283 +1,255 @@
-/* Steven Wilen · Web Guides — production stylesheet.
-   Tokens are the Steven Wilen design system; nothing from the previous site remains. */
+/* Steven Wilen · QR listing cards. Built from the Steven Wilen Design System:
+   tokens, then base, then the website UI kit (ui_kits/website/index.html). */
+
+/* ---- tokens ---- */
 :root{
+/* Ink — cool near-black through mid greys. Body text, buttons, hairlines. */
 --ink-900:#0F1720;--ink-800:#16202B;--ink-700:#22303E;--ink-600:#3A4B5C;--ink-500:#5B6B7B;--ink-400:#8595A3;--ink-300:#B4BFC8;--ink-200:#D7DEE3;
+/* Paper — warm cream. The page is never pure white. */
 --paper-000:#FFFFFF;--paper-050:#FAF8F5;--paper-100:#F4F1EC;--paper-300:#DCD5C9;
+/* Ochre — the single accent. Buttons, step numbers, rules, focus rings. */
 --ochre-700:#8C6524;--ochre-600:#A8762B;--ochre-500:#B8863B;--ochre-300:#DFC48A;--ochre-100:#F2E7CF;
+/* Semantic */
+--danger-600:#8E3A32;
 --text-strong:var(--ink-900);--text-body:var(--ink-700);--text-muted:var(--ink-500);--text-faint:var(--ink-400);--text-inverse:var(--paper-050);
+--text-accent:var(--ochre-700);
 --surface-page:var(--paper-050);--surface-card:var(--paper-000);--surface-sunken:var(--paper-100);
---border-hairline:var(--ink-200);--border-soft:var(--paper-300);--border-field:#857E72;
---font-display:"Libre Baskerville",Georgia,serif;--font-sans:"IBM Plex Sans",-apple-system,"Segoe UI",Helvetica,sans-serif;--font-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
---radius-xs:2px;--radius-sm:4px;--radius-md:6px;--radius-lg:10px;--radius-pill:999px;
---shadow-sm:0 1px 2px rgba(15,23,32,.06);--shadow-md:0 6px 18px -8px rgba(15,23,32,.14);--shadow-lifted:0 18px 40px -20px rgba(15,23,32,.28);
---ease-standard:cubic-bezier(.2,0,.2,1);--ease-soft:cubic-bezier(.16,1,.3,1);
---dur-fast:120ms;--dur-base:180ms;--dur-slow:320ms;--dur-reveal:520ms;
---sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:24px;--sp-6:32px;--sp-7:48px;--sp-8:64px;
---pad-x:clamp(20px,5vw,64px);--container:1180px;
+--border-hairline:var(--ink-200);--border-soft:var(--paper-300);--border-field:#857E72;--border-accent:var(--ochre-300);
+--accent:var(--ochre-500);--accent-strong:var(--ochre-700);--accent-wash:var(--ochre-100);
 }
+
+:root{
+--font-display:"Libre Baskerville",Georgia,serif;
+--font-sans:"IBM Plex Sans",-apple-system,"Segoe UI",Helvetica,sans-serif;
+--font-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+
+/* Four sizes on a page, no more. Each is fluid between phone and desktop. */
+--type-display:clamp(33px,4.9vw,62px);   /* h1 — serif, 1.07 */
+--type-heading:clamp(24px,3.2vw,36px);   /* h2 — serif, 1.15 */
+--type-body:17px;                        /* sans, 1.65 */
+--type-small:15px;                       /* sans, 1.5 — captions, nav, footer */
+--type-eyebrow:12px;                     /* sans, .12em uppercase */
+
+--lh-display:1.07; /* @kind other */
+--lh-heading:1.15; /* @kind other */
+--lh-body:1.65; /* @kind other */
+--lh-tight:1.5; /* @kind other */
+--tracking-display:-.02em;--tracking-eyebrow:.12em;
+--weight-regular:400;--weight-medium:500;--weight-semibold:600;
+}
+
+:root{
+--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:24px;--sp-6:32px;--sp-7:48px;--sp-8:64px;
+--pad-x:clamp(20px,5vw,64px);
+--container:1180px;
+--container-narrow:820px;
+--section-y:clamp(48px,6vw,88px); /* @kind spacing */
+--section-y-lg:clamp(64px,9vw,128px); /* @kind spacing */
+--tap-min:44px;
+}
+
+:root{--radius-xs:2px;--radius-sm:4px;--radius-md:6px;--radius-lg:10px;--radius-pill:999px}
+
+:root{
+--shadow-sm:0 1px 2px rgba(15,23,32,.06);
+--shadow-md:0 6px 18px -8px rgba(15,23,32,.14);
+--shadow-lifted:0 18px 40px -20px rgba(15,23,32,.28);
+--focus-ring:0 0 0 3px var(--ochre-100);
+}
+
+:root{
+--ease-standard:cubic-bezier(.2,0,.2,1); /* @kind other */
+--ease-soft:cubic-bezier(.16,1,.3,1); /* @kind other */
+--dur-fast:120ms; /* @kind other */
+--dur-base:180ms; /* @kind other */
+--dur-slow:320ms; /* @kind other */
+--dur-reveal:520ms; /* @kind other */
+}
+
+/* ---- base ---- */
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--surface-page);color:var(--text-body);font-family:var(--font-sans);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;text-wrap:pretty}
-h1,h2,h3{font-family:var(--font-display);font-weight:400;color:var(--text-strong);letter-spacing:-.02em;margin:0;line-height:1.15}
+body{margin:0;background:var(--surface-page);color:var(--text-body);font-family:var(--font-sans);font-size:var(--type-body);line-height:var(--lh-body);-webkit-font-smoothing:antialiased;text-wrap:pretty}
+h1,h2,h3{font-family:var(--font-display);font-weight:var(--weight-regular);color:var(--text-strong);letter-spacing:var(--tracking-display);margin:0;line-height:var(--lh-heading)}
 p{margin:0}
 a{color:var(--text-strong);text-decoration:none}
+a:hover{color:var(--ochre-700)}
 img{max-width:100%;display:block}
 :focus-visible{outline:2px solid var(--ochre-500);outline-offset:2px}
-.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);font-weight:500}
-.wrap{max-width:var(--container);margin:0 auto}
-
-/* reveal on scroll */
-[data-reveal]{opacity:0;transform:translateY(8px);transition:opacity var(--dur-reveal) var(--ease-soft),transform var(--dur-reveal) var(--ease-soft)}
-[data-reveal].in{opacity:1;transform:none}
-[data-reveal-delay="1"]{transition-delay:90ms}[data-reveal-delay="2"]{transition-delay:180ms}[data-reveal-delay="3"]{transition-delay:270ms}
-
-/* header */
-.site-header{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:var(--sp-5);padding:14px var(--pad-x);background:var(--surface-page);border-bottom:1px solid transparent;transition:border-color var(--dur-slow) var(--ease-standard)}
-.site-header.past{border-bottom-color:var(--border-hairline)}
-.wordmark{display:flex;align-items:baseline;gap:8px}
-.wordmark b{font-family:var(--font-display);font-weight:400;font-size:17px;color:var(--text-strong)}
-.wordmark i{font-style:normal;color:var(--ochre-500)}
-.wordmark span{font-size:15px;color:var(--text-muted)}
-.site-nav{display:flex;align-items:center;gap:clamp(16px,3vw,32px);font-size:15px}
-.site-nav a{color:var(--text-muted);border-bottom:1px solid transparent;padding-bottom:2px;transition:color var(--dur-fast) var(--ease-standard),border-color var(--dur-fast) var(--ease-standard)}
-.site-nav a:hover{color:var(--text-strong);border-bottom-color:var(--ochre-500)}
-.site-nav a.strong{color:var(--text-strong)}
-
-/* hero */
-.hero{padding:clamp(18px,2.6vw,36px) var(--pad-x) clamp(32px,3.4vw,46px)}
-.hero-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:center}
-.hero h1{font-size:clamp(33px,4.9vw,62px);line-height:1.07;margin-bottom:var(--sp-5)}
-.hero h1 .line{display:block;overflow:hidden;padding-bottom:.14em;margin-bottom:-.14em}
-.hero h1 .line:last-child{margin-bottom:0}
-.hero h1 .line>span{display:block;white-space:nowrap;transform:translateY(120%);transition:transform 720ms var(--ease-soft)}
-.hero h1.in .line>span{transform:none}
-.hero h1.in .line:nth-child(2)>span{transition-delay:90ms}
-.hero h1.in .line:nth-child(3)>span{transition-delay:180ms}
-.hero-sub{font-size:clamp(17px,1.6vw,21px);color:var(--text-muted);max-width:52ch;margin-bottom:var(--sp-6)}
-.link-pill{display:inline-flex;align-items:center;gap:10px;padding:9px 16px 9px 12px;border:1px solid var(--border-hairline);border-radius:var(--radius-pill);background:var(--surface-card);box-shadow:var(--shadow-sm);font-family:var(--font-mono);font-size:clamp(12px,1.2vw,14px);color:var(--text-muted);margin-bottom:var(--sp-6)}
-.link-pill .dot{width:7px;height:7px;border-radius:var(--radius-pill);background:var(--ochre-500);flex:0 0 auto}
-.link-pill .slug{color:var(--text-strong)}
-.link-pill .caret{color:var(--ochre-600);animation:blink 1s steps(1) infinite}
-@keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
-.hero-actions{display:flex;gap:var(--sp-4);align-items:center;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;white-space:nowrap;font-family:var(--font-sans);font-size:17px;font-weight:500;padding:14px 24px;border:1px solid var(--ink-800);border-radius:var(--radius-sm);background:var(--ink-800);color:var(--text-inverse);cursor:pointer;transition:background var(--dur-fast) var(--ease-standard),border-color var(--dur-fast) var(--ease-standard),transform var(--dur-fast) var(--ease-standard)}
-.btn:hover{background:var(--ink-700);border-color:var(--ink-700)}
-.btn:active{transform:translateY(1px)}
-.btn-outline{background:var(--surface-card);color:var(--text-strong)}
-.btn-outline:hover{background:var(--paper-100);border-color:var(--ink-800)}
-.btn-link{background:none;border:0;border-bottom:1px solid var(--ochre-300);border-radius:0;padding:0 0 2px;color:var(--text-strong)}
-.btn-link:hover{background:none;color:var(--ochre-700);border-bottom-color:var(--ochre-600)}
-
-/* hero phone */
-.phone-wrap{position:relative;width:min(300px,74vw);justify-self:center;perspective:1500px;perspective-origin:62% 45%}
-.phone-glow{position:absolute;inset:-9% -14%;background:radial-gradient(60% 50% at 50% 40%,rgba(184,134,59,.16),transparent 72%);pointer-events:none}
-/* The device, used by the hero and by the examples below. Three things carry
-   the weight: a bezel lit along one edge instead of a flat fill, a shadow
-   stacked out of contact + ambient + cast rather than one blur, and a small
-   turn away from the viewer so it reads as an object rather than a rectangle.
-   Nothing is drawn over the screen - no gloss, no tint, no overlay - because
-   the screens are real screenshots and have to stay exactly that. */
-/* Bezel, rim and corner are one set of numbers per size, so a smaller
-   device is the same phone scaled rather than the same frame around a
-   smaller picture. */
-.phone{position:relative;--bezel:9px;--rim:2px;--radius:34px;
-  border-radius:var(--radius);padding:var(--bezel);border:var(--rim) solid transparent;
-  background:
-    linear-gradient(158deg,#4C525A 0%,#31363D 15%,#22272C 41%,#171B1F 64%,#1D2226 84%,#262B31 100%) padding-box,
-    linear-gradient(168deg,#A9B0B8 0%,#5C626A 10%,#14171A 42%,#0C0E10 72%,#121417 92%,#1E2227 100%) border-box;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 1px 2px rgba(17,17,19,.18),0 3px 7px -2px rgba(17,17,19,.34),4px 10px 20px -8px rgba(17,17,19,.24),
-    8px 30px 48px -20px rgba(17,17,19,.30),16px 64px 96px -44px rgba(17,17,19,.46);
-  transform:rotateY(-4.5deg) rotateX(1.2deg);animation:floatHero 7.5s ease-in-out infinite}
-/* The shadow the phone casts on the page it is floating over. Separate from
-   the box-shadow stack so it stays put under the device and does not travel
-   with the tilt of the body. */
-.phone::after{content:"";position:absolute;left:5%;right:5%;bottom:-18px;height:26px;border-radius:50%;
-  background:radial-gradient(50% 50% at 50% 50%,rgba(17,17,19,.30),rgba(17,17,19,0) 72%);filter:blur(4px)}
-@keyframes floatHero{0%,100%{transform:rotateY(-4.5deg) rotateX(1.2deg) translateY(0)}50%{transform:rotateY(-4.5deg) rotateX(1.2deg) translateY(-7px)}}
-/* Frame, then a black mask, then the display. Without the mask the picture
-   runs straight into the bezel and the whole thing reads as a shape with a
-   hole cut in it. The ring outside the mask is the polished chamfer where the
-   frame meets the glass; the one inside is the edge of the panel itself. */
-.phone-screen{position:relative;border-radius:calc(var(--radius) - var(--bezel) - var(--rim));overflow:hidden;background:#000;aspect-ratio:620/1248;
-  box-shadow:0 0 0 1px rgba(255,255,255,.12),0 0 0 3px rgba(0,0,0,.6)}
-.phone-screen>img{width:100%;height:100%;object-fit:cover;display:block}
-/* The front page of all four guides, cross-faded. Which one is showing is
-   driven from script.js rather than from a keyframe offset, because the url
-   typing itself into the pill beside the phone has to name the guide that is
-   actually on screen - two independent timelines drift apart within a minute.
-   The first frame carries .on in the markup, so with scripting off, or under
-   prefers-reduced-motion where the cycle never starts, the screen still shows
-   a guide instead of going blank. Fading is linear so the outgoing and
-   incoming frames sum to 1 and the pair never dips toward the background. */
-.phone-screen .frame{position:absolute;inset:0;opacity:0;transition:opacity 700ms linear}
-.phone-screen .frame.on{opacity:1}
-.phone-screen .frame img{width:100%;height:100%;object-fit:cover;display:block}
-
-/* work */
-.work{padding:clamp(22px,2.4vw,32px) var(--pad-x) clamp(48px,6vw,88px)}
-/* Heading and lede share a line, so the pitch costs one block of height
-   instead of two and the screens stay in view with it. */
-.work-intro{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:var(--sp-4) clamp(24px,4vw,64px)}
-.work-intro>div{flex:1 1 340px;max-width:480px}
-.work h2{font-size:clamp(28px,3.2vw,42px);margin:var(--sp-2) 0 0}
-/* A note beside the heading rather than a subtitle floating under it. */
-.work-lede{color:var(--text-muted);max-width:52ch;font-size:16px;line-height:1.55;flex:0 1 470px;margin-top:var(--sp-4);padding:var(--sp-4);border:1px solid var(--border-hairline);border-radius:var(--radius-md);background:var(--surface-card)}
-.tabs{display:flex;gap:var(--sp-2);flex-wrap:wrap;margin:clamp(16px,2.2vw,24px) 0}
-.tab{border:1px solid var(--border-hairline);background:var(--surface-card);color:var(--text-muted);padding:9px 15px;border-radius:var(--radius-pill);font-size:15px;font-family:var(--font-sans);line-height:1.2;white-space:nowrap;cursor:pointer;transition:background var(--dur-fast) var(--ease-standard),color var(--dur-fast) var(--ease-standard),border-color var(--dur-fast) var(--ease-standard)}
-.tab[aria-selected="true"]{background:var(--ink-800);border-color:var(--ink-800);color:var(--text-inverse)}
-/* Which guide the tabs are showing, the two screens, and what is in it. The
-   phones overlap rather than sitting side by side: a phone is twice as tall as
-   it is wide, so a side-by-side pair set the height of the whole section and
-   pushed the text below the fold. Overlapped, the pair costs one phone of
-   width and frees the second column for everything the tabs used to stack. */
-.work-grid{display:grid;grid-template-columns:minmax(0,570px) minmax(0,1fr);grid-template-areas:"visual head" "visual aside";grid-template-rows:auto 1fr;column-gap:clamp(28px,4vw,72px);row-gap:clamp(12px,1.8vw,20px);align-items:start}
-.work-visual{grid-area:visual;align-self:start;display:block;padding:clamp(2px,.8vw,8px) 0 clamp(6px,1.2vw,12px)}
-.work-head{grid-area:head;align-self:start;max-width:620px}
-.work-head h3{font-size:clamp(23px,2.7vw,33px)}
-.work-head p{margin-top:6px;font-size:15px;color:var(--text-muted)}
-.work-aside{grid-area:aside;display:flex;flex-direction:column;gap:var(--sp-5);max-width:620px}
-/* Ruled, not boxed. Two cards next to a device this size read as a form. */
-.note{border:0;border-top:1px solid var(--border-soft);border-radius:0;background:none;padding:var(--sp-4) 0 0}
-.note ul{list-style:none;margin:var(--sp-3) 0 0;padding:0;columns:2;column-gap:var(--sp-6)}
-.note li{display:grid;grid-template-columns:auto 1fr;gap:10px;font-size:15px;break-inside:avoid;padding-bottom:var(--sp-3)}
-.note li::before{content:"";width:5px;height:5px;border-radius:var(--radius-pill);background:var(--ochre-500);margin-top:9px}
-.note p{margin-top:var(--sp-3);font-size:15px}
-/* The way into the live guide is a button, not a text link: it is the one
-   thing in this column anybody is meant to click. */
-.work-aside .btn{align-self:flex-start;font-size:16px;padding:12px 20px;background:none}
-.work-aside .btn:hover{background:none;border-color:var(--ochre-600);color:var(--ochre-700)}
-/* The front screen carries the guide; the second sits behind it, turned the
-   other way and set back in z so it recedes instead of just being smaller. */
-.stage{position:relative;display:flex;align-items:center;justify-content:flex-start;gap:clamp(12px,1.8vw,26px);perspective:1600px;perspective-origin:50% 42%}
-.stage-slot{width:min(240px,47%)}
-.stage-slot--b{order:2;margin-top:clamp(4px,.8vw,10px)}
-.stage-slot .phone{--bezel:7.5px;--rim:1.5px;--radius:27px}
-.stage-slot--a .phone{transform:rotateY(7deg) rotateX(1.5deg);animation:floatLeft 8s ease-in-out infinite}
-.stage-slot--b .phone{transform:rotateY(-7deg) rotateX(1.5deg) translateZ(-22px);animation:floatRight 8s ease-in-out infinite;animation-delay:-4s}
-@keyframes floatLeft{0%,100%{transform:rotateY(7deg) rotateX(1.5deg) translateY(0)}50%{transform:rotateY(7deg) rotateX(1.5deg) translateY(-4px)}}
-@keyframes floatRight{0%,100%{transform:rotateY(-7deg) rotateX(1.5deg) translateZ(-22px) translateY(0)}50%{transform:rotateY(-7deg) rotateX(1.5deg) translateZ(-22px) translateY(-4px)}}
-.ex-facts{font-family:var(--font-mono);font-size:14px;color:var(--text-muted);margin-top:-2px}
-/* The printed half of the job. The guide is the thing they scan into; this is
-   the thing they scan. Showing one card next to the screens is the only way a
-   page explains a physical deliverable. */
-.card-row{padding-top:clamp(8px,1.6vw,18px);display:grid;grid-template-columns:minmax(0,400px) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:center}
-.card-shot{width:100%;height:auto;border-radius:var(--radius-sm);box-shadow:var(--shadow-md)}
-.card-copy h2{font-size:clamp(24px,3vw,36px);margin:var(--sp-3) 0}
-.card-copy .btn{margin-top:var(--sp-5)}
-.card-copy p{font-size:16px;color:var(--text-muted);max-width:56ch}
-.flow{margin-top:clamp(36px,5vw,64px);display:flex;align-items:center;gap:clamp(12px,2vw,22px);flex-wrap:wrap;font-family:var(--font-mono);font-size:13px;color:var(--text-muted)}
-.flow .rule{width:clamp(24px,4vw,56px);height:1px;background:var(--border-soft)}
-.price{margin-top:clamp(32px,5vw,56px);padding-top:var(--sp-6);border-top:1px solid var(--border-soft);display:flex;flex-wrap:wrap;gap:var(--sp-5);align-items:center}
-.price b{font-family:var(--font-display);font-weight:400;font-size:clamp(22px,2.4vw,30px);color:var(--text-strong)}
-.price span{font-size:15px;color:var(--text-muted);text-wrap:balance}
-
-/* contact */
-.contact{background:var(--surface-sunken);border-top:1px solid var(--border-hairline);padding:clamp(64px,9vw,128px) var(--pad-x)}
-.contact-inner{max-width:820px;margin:0 auto}
-.contact h2{font-size:clamp(30px,4.4vw,54px);margin:var(--sp-5) 0}
-.contact p{color:var(--text-muted);font-size:clamp(16px,1.6vw,20px);max-width:56ch;margin-bottom:var(--sp-7)}
-.contact-mobile{display:none}
-/* inquiry form */
-/* Inquiry form. Deliberately not a card: a white panel dropped on the section
-   is what makes a form read as a plugin rather than part of the page, and at
-   1.13:1 against the background it was doing no visual work anyway. The fields
-   sit directly on the paper and are drawn with a border that actually passes
-   contrast, so the affordance comes from the field itself. */
-.inquiry{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-6) var(--sp-5)}
-.field{display:flex;flex-direction:column;gap:10px;min-width:0}
-.field--full{grid-column:1 / -1}
-/* Labels borrow the site's eyebrow treatment, the same one used by GET IN TOUCH
-   and IN THE GUIDE, so the form speaks the page's language instead of a
-   framework's default 15px medium. */
-.field label{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);font-weight:500}
-.field input,.field textarea{width:100%;min-height:52px;font-family:var(--font-sans);font-size:16px;line-height:1.5;color:var(--text-strong);background:var(--surface-card);border:1px solid var(--border-field);border-radius:var(--radius-md);padding:14px 16px;transition:border-color var(--dur-fast) var(--ease-standard),box-shadow var(--dur-fast) var(--ease-standard);outline:none}
-/* No resize grabber. The textarea grows with what you type instead, which is
-   handled in script.js. */
-.field textarea{resize:none;overflow:hidden;min-height:104px}
-.field input:focus,.field textarea:focus{border-color:var(--ochre-600);box-shadow:0 0 0 3px var(--ochre-100)}
-.field input::placeholder,.field textarea::placeholder{color:var(--text-muted)}
-.field .hint{font-size:13px;color:var(--text-muted)}
-.field .err{font-size:13px;color:#8E3A32;display:none}
-.field.invalid .err{display:block}
-.field.invalid input,.field.invalid textarea{border-color:#8E3A32}
-.field.invalid input:focus,.field.invalid textarea:focus{box-shadow:0 0 0 3px rgba(142,58,50,.14)}
-.form-actions{flex-direction:row;align-items:center;gap:var(--sp-5);flex-wrap:wrap;margin-top:var(--sp-2)}
-.form-alt{font-size:15px;color:var(--text-muted)}
-.form-alt a{border-bottom:1px solid var(--ochre-300)}
-.form-alt a:hover{color:var(--ochre-700);border-bottom-color:var(--ochre-600)}
-/* The confirmation replaces the form, so it is ruled rather than boxed for the
-   same reason the form is not a card. */
-.form-sent{display:flex;flex-direction:column;align-items:flex-start;gap:var(--sp-3);border-left:2px solid var(--ochre-500);padding:var(--sp-2) 0 var(--sp-2) var(--sp-5)}
-.form-sent b{font-family:var(--font-display);font-weight:400;font-size:clamp(22px,2.4vw,28px);color:var(--text-strong)}
-.form-sent span{font-size:16px;color:var(--text-muted)}
-.form-sent .btn{margin-top:var(--sp-3)}
-/* .inquiry sets display:grid and .form-sent sets display:flex, and a class rule
-   outranks the UA [hidden]{display:none}. Without this the confirmation panel
-   renders on page load and form.hidden=true never hides the form after submit. */
-.inquiry[hidden],.form-sent[hidden]{display:none}
-
-/* footer */
-.site-footer{padding:clamp(36px,5vw,64px) var(--pad-x)}
-.footer-top{display:flex;flex-wrap:wrap;gap:var(--sp-7);justify-content:space-between;align-items:flex-end}
-.footer-brand{display:flex;gap:var(--sp-4);align-items:center}
-.footer-avatar{width:48px;height:48px;flex:0 0 auto;border-radius:var(--radius-pill);object-fit:cover}
-.footer-brand b{font-family:var(--font-display);font-weight:400;font-size:17px;color:var(--text-strong);display:block}
-.footer-brand span{font-size:15px;color:var(--text-muted)}
-.footer-cols{display:flex;gap:clamp(24px,5vw,64px);font-size:15px}
-.footer-col{display:flex;flex-direction:column;gap:var(--sp-2)}
-.footer-col a{border-bottom:1px solid var(--ochre-300);width:fit-content}
-.footer-note{color:var(--text-faint)}
-.footer-col a:hover{color:var(--ochre-700);border-bottom-color:var(--ochre-600)}
-.footer-bottom{margin-top:var(--sp-7);padding-top:var(--sp-4);border-top:1px solid var(--border-hairline);font-size:13px;color:var(--text-faint)}
-
-@media (max-width:900px){
-  .hero-grid{grid-template-columns:minmax(0,1fr)}
-  .card-row{grid-template-columns:minmax(0,1fr);gap:var(--sp-5)}
-  .card-shot{max-width:460px}
-  .work-grid{grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "visual" "aside";row-gap:clamp(14px,2.4vw,24px)}
-  .work-visual{justify-self:start;width:min(480px,100%)}
-  /* Text first, as on desktop. order:-1 pushed the placeholder device above
-     the headline, so the whole pitch started ~690px down the page. */
-  .phone-wrap{order:0}
-}
-@media (max-width:340px){
-  .hero h1{font-size:29px}
-}
-@media (max-width:640px){
-  /* Side by side, two screens this narrow are thumbnails. Overlap them: the
-     front one big enough to read, the second angled behind it. */
-  .stage-slot--a{width:62%;z-index:1}
-  .stage-slot--b{position:absolute;top:7%;right:0;width:54%;margin-top:0;z-index:0}
-  .stage-slot--a .phone{--bezel:6.5px;--rim:1.5px;--radius:25px}
-  .stage-slot--b .phone{--bezel:5.5px;--rim:1.5px;--radius:23px}
-  .note ul{columns:1}
-  .inquiry{grid-template-columns:1fr}
-  /* On a phone the form is the wrong instrument: the person is holding the
-     thing that calls me. Call and text take the section, with email under
-     them for anyone who would rather write. */
-  .inquiry,.form-sent{display:none}
-  .contact p{margin-bottom:var(--sp-6)}
-  .contact-mobile{display:flex;flex-direction:column;gap:var(--sp-4)}
-  .contact-mobile-actions{display:flex;gap:12px}
-  .contact-mobile .btn{flex:1;padding:16px 20px}
-}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:1ms!important}}
 
-/* Phones: the header had no mobile handling, so the wordmark broke across two
-   lines ("Steven" / "Wilen") and the nav CTA onto two or three. Drop the
-   "Web Guides" suffix and the Examples link, which the hero already offers as
-   "See examples", leaving brand left and one CTA right on a single line. */
-@media (max-width:640px){
-  /* Four pills of four different lengths wrap ragged. Two even columns
-     instead, so the row breaks where it is supposed to. */
-  .tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;max-width:440px}
-  .tab{width:100%;font-size:14px;padding:8px 10px;justify-content:center}
-  .tab:last-child:nth-child(odd){grid-column:1 / -1}
-  .wordmark i,.wordmark span{display:none}
-  .site-nav a:not(.strong){display:none}
-  .wordmark b,.site-nav a{white-space:nowrap}
-  .site-nav a,.wordmark{min-height:44px;display:inline-flex;align-items:center}
-  .tab{min-height:44px;display:inline-flex;align-items:center}
-  .footer-col a,.footer-note{min-height:44px;display:inline-flex;align-items:center}
-  .btn-link{min-height:44px;display:inline-flex;align-items:center}
+/* ---- website ---- */
+/* Type — four sizes plus the label treatment.
+   hero 34–58 · title 28–40 · body 17/1.6 · small 15 · label 13 caps
+   Mono 13–14 is reserved for specs and callouts, like a product sheet. */
+:root{--page:1200px;--sec:88px;--lab-title:10px;--head-body:clamp(24px,3vw,36px)}
+html,body{overflow-x:clip}
+body{background:var(--surface-page);color:var(--text-body);font-size:17px;line-height:1.6}
+.wrap{max-width:var(--page);margin:0 auto;padding-left:var(--pad-x);padding-right:var(--pad-x)}
+.hero-t{font-family:var(--font-display);font-weight:400;color:var(--text-strong);letter-spacing:-.02em;font-size:clamp(34px,4.4vw,58px);line-height:1.04;margin:0}
+.title{font-family:var(--font-display);font-weight:400;color:var(--text-strong);letter-spacing:-.018em;font-size:clamp(28px,3.4vw,40px);line-height:1.14;margin:0;text-wrap:balance}
+.sub{font-family:var(--font-display);font-weight:400;color:var(--text-strong);letter-spacing:-.012em;font-size:clamp(21px,2.3vw,28px);line-height:1.22;margin:0;text-wrap:balance}
+p{margin:0;max-width:62ch;text-wrap:pretty}
+.lbl{display:block;font-size:13px;letter-spacing:.11em;text-transform:uppercase;color:var(--ochre-700);font-weight:600}
+.note{font-size:15px;line-height:1.55;color:var(--text-muted)}
+.mono{font-family:var(--font-mono);font-size:13px;letter-spacing:.02em;color:var(--text-muted)}
+figure{margin:0}
+img{display:block;width:100%;height:auto}
+section{padding-top:var(--sec)}
+.head{max-width:620px}
+.head .title{margin-top:var(--lab-title)}
+.head p{margin-top:20px}
+.cut{filter:drop-shadow(0 26px 30px rgba(15,23,32,.16)) drop-shadow(0 5px 8px rgba(15,23,32,.08))}
+
+/* controls */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;white-space:nowrap;font-family:var(--font-sans);font-size:16px;font-weight:500;padding:14px 24px;min-height:var(--tap-min);border:1px solid var(--ink-900);border-radius:var(--radius-sm);background:var(--ink-900);color:var(--text-inverse);cursor:pointer;transition:background 160ms var(--ease-standard),border-color 160ms var(--ease-standard)}
+.btn:hover{background:var(--ink-700);border-color:var(--ink-700);color:var(--text-inverse)}
+.lnk{white-space:nowrap;display:inline-flex;align-items:center;gap:8px;min-height:var(--tap-min);font-size:16px;font-weight:500;color:var(--text-strong);border-bottom:1px solid var(--ochre-300);padding-bottom:2px;transition:color 160ms var(--ease-standard),border-color 160ms var(--ease-standard)}
+.lnk:hover{color:var(--ochre-700);border-bottom-color:var(--ochre-600)}
+.lnk .arw{transition:transform 160ms var(--ease-standard)}
+.lnk:hover .arw{transform:translateX(3px)}
+a{color:var(--text-strong)}a:hover{color:var(--ochre-700)}
+:focus-visible{outline:2px solid var(--ochre-600);outline-offset:3px}
+
+/* nav — one thin sticky line: name and tagline inline, links, a small text-link CTA */
+.nav{background:var(--surface-page);border-bottom:1px solid var(--border-hairline)}
+.nav .in{display:flex;align-items:center;justify-content:space-between;gap:24px;height:64px;padding:0 var(--pad-x);max-width:var(--page);margin:0 auto}
+.nav .mark{display:flex;align-items:baseline;gap:12px;min-width:0}
+.nav .mark b{font-family:var(--font-display);font-weight:400;font-size:18px;color:var(--text-strong);line-height:1;white-space:nowrap}
+.nav .mark span{font-size:13px;color:var(--text-muted);white-space:nowrap}
+.nav .links{display:flex;align-items:center;gap:26px;height:100%}
+.nav .links a{white-space:nowrap;font-size:14px;color:var(--text-muted);height:100%;display:inline-flex;align-items:center;transition:color 160ms var(--ease-standard)}
+.nav .links a:hover{color:var(--text-strong)}
+[hidden]{display:none!important}
+.nav .links a.cta{color:var(--text-strong);font-weight:500;gap:6px}
+.nav .links a.cta span{border-bottom:1px solid var(--ochre-500);padding-bottom:1px}
+.nav .links a.cta:hover{color:var(--ochre-700)}
+
+/* hero — copy left, the fan right, straight on the cream */
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:clamp(28px,4vw,56px);align-items:center;padding-top:clamp(32px,4vw,56px)}
+.hero-copy>.hero-t{margin-top:var(--lab-title)}
+.hero-copy .sub{margin-top:24px;max-width:22ch}
+.hero-copy .note{margin-top:18px;max-width:44ch}
+.hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin-top:32px}
+.prices{margin-top:26px;font-size:16px}
+.prices b{font-family:var(--font-sans);font-weight:600;color:var(--text-strong)}
+.prices span{display:block;margin-top:6px;font-size:15px;color:var(--text-muted)}
+/* Image on the right, pushed out to the window edge so the wrist runs off
+   the page instead of stopping mid-air. */
+.hero-shot{margin-right:0}
+.hero-shot img{width:100%;max-height:min(78vh,660px);object-fit:contain;object-position:right center}
+
+/* pricing — two packages side by side, specs in their own row below */
+.packs{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,32px);margin-top:var(--head-body);align-items:stretch}
+.specs{max-width:none;margin-top:clamp(20px,2.4vw,28px);border-top:1px solid var(--border-soft);padding-top:20px;display:flex;flex-wrap:wrap;gap:6px 0;font-family:var(--font-mono);font-size:14px;line-height:1.7;color:var(--text-muted)}
+.specs span{white-space:nowrap}
+.specs span:not(:last-child)::after{content:"·";padding:0 12px;color:var(--border-soft)}
+.pack{min-width:0;display:flex;flex-direction:column;border:1px solid var(--border-soft);border-radius:var(--radius-sm);padding:clamp(22px,2.4vw,30px)}
+.pack--rec{background:var(--paper-100);border-color:var(--paper-300);border-left:2px solid var(--ochre-500)}
+.pack-top{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 20px;align-items:baseline}
+.pack-top h3{font-family:var(--font-display);font-weight:400;font-size:clamp(21px,2.2vw,26px);line-height:1.2;color:var(--text-strong);margin:0}
+.pack-top .amt{font-family:var(--font-display);font-size:clamp(30px,3.2vw,42px);line-height:1;color:var(--text-strong);white-space:nowrap}
+.pack .rec-tag{display:block;margin-top:12px;font-size:13px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--ochre-700)}
+.pack p{margin-top:16px;font-size:16px;color:var(--text-muted);max-width:42ch}
+.pack .lnk{margin-top:auto;padding-top:22px;align-self:flex-start}
+
+/* what buyers see — copy left, the scan and the page it opens side by side */
+.see{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4.5vw,64px);align-items:center}
+.see-copy .title{margin-top:var(--lab-title)}
+.see-copy p{margin-top:18px;max-width:40ch}
+.see-copy p+p{margin-top:14px}
+.see-copy .lnk{margin-top:28px}
+/* Phones only — on a phone the example page opens in the same place a buyer would see it. */
+.see-mobile{display:none}
+@media (max-width:860px){.see-mobile{display:inline-flex}}
+/* What is on the page — a small ruled 2 × 2 sheet, like listing-sheet facts. */
+.see-list{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 clamp(20px,2.4vw,32px);margin:28px 0 0;max-width:520px}
+.see-list div{border-top:1px solid var(--border-soft);padding:14px 0 16px;min-width:0}
+.see-list dt{font-family:var(--font-display);font-size:19px;line-height:1.25;color:var(--text-strong)}
+.see-list dd{margin:4px 0 0;font-size:15px;line-height:1.5;color:var(--text-muted)}
+/* The PNG has ~14% empty canvas above and below the phone; pull it in so the
+   section starts where the product does, not where its transparent border does. */
+.see-pics{display:flex;justify-content:center;align-items:center;order:-1;margin:-10% 0 -13%}
+.see-pics img{aspect-ratio:4/5;object-fit:cover}
+/* Full-canvas PNG so the baked shadow fades out instead of being clipped. */
+.see-pics .cut{width:auto;max-width:118%;max-height:min(94vh,800px);object-fit:contain;margin:0 auto}
+
+/* how it works — steps left, what arrives on the right, same height */
+.work{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:clamp(28px,4.5vw,64px);align-items:stretch;margin-top:var(--head-body)}
+.steps{border-bottom:1px solid var(--border-soft)}
+.step{border-top:1px solid var(--border-soft);padding:clamp(14px,1.8vw,20px) 0;display:grid;grid-template-columns:44px minmax(0,1fr);gap:0 clamp(16px,2vw,24px)}
+.step .n{font-family:var(--font-mono);font-size:14px;font-weight:500;letter-spacing:.06em;color:var(--ochre-600);font-variant-numeric:tabular-nums;padding-top:5px}
+.step h3{font-family:var(--font-display);font-weight:400;font-size:21px;line-height:1.2;color:var(--text-strong);margin:0;text-wrap:balance}
+.step p{margin-top:6px;font-size:15px;line-height:1.55;color:var(--text-muted)}
+/* The hands are cut at the photo's bottom and right edges, so the photo is
+   anchored to both: it sits directly on the ink closing band and runs off the
+   right edge of the window. The wrists read as entering from below. */
+.how-sec{padding-bottom:0}
+.work{align-items:end}
+.work .steps{align-self:start;margin-bottom:clamp(32px,4vw,56px);position:relative;z-index:1}
+/* Pulled left into the steps column; the rules may run under it. */
+.work .arrive{position:relative;z-index:0;margin-left:-26%;align-self:end;margin-top:clamp(-160px,-12vw,-80px);margin-right:calc(-1 * max(var(--pad-x), (100vw - var(--page)) / 2 + var(--pad-x)));display:flex;justify-content:flex-end}
+.work .arrive img{width:auto;max-width:100%;max-height:min(86vh,700px)}
+
+/* a few details — three short answers, open, in one row */
+.ask{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,40px);margin-top:var(--head-body)}
+.ask div{border-top:1px solid var(--border-soft);padding-top:18px;min-width:0}
+.ask h3{font-family:var(--font-display);font-weight:400;font-size:21px;line-height:1.25;color:var(--text-strong);margin:0;text-wrap:balance}
+.ask p{margin-top:10px;font-size:15px;line-height:1.55;color:var(--text-muted)}
+
+/* closing — contact and footer as one ink block */
+.end{margin-top:0;padding-top:0;background:var(--ink-900);color:var(--paper-300)}
+.end .in{max-width:var(--page);margin:0 auto;padding:clamp(48px,6vw,80px) var(--pad-x) clamp(24px,3vw,32px)}
+.end-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:28px 48px}
+.end h2{font-family:var(--font-display);font-weight:400;font-size:clamp(28px,3.4vw,40px);line-height:1.14;letter-spacing:-.018em;color:var(--paper-050);margin:0;text-wrap:balance}
+.end-top p{margin-top:14px;font-size:16px;color:var(--paper-300);max-width:42ch}
+/* The number is the action: set large in the serif, with a quiet text line under it. No box. */
+.end .reach{display:flex;flex-direction:column;align-items:flex-end;gap:10px;text-align:right}
+.end .num{font-family:var(--font-display);font-size:clamp(28px,3.4vw,40px);line-height:1.1;letter-spacing:-.018em;color:var(--paper-050);white-space:nowrap;transition:color 160ms var(--ease-standard)}
+.end .num:hover{color:var(--ochre-300)}
+.end .sms{display:inline-flex;align-items:center;gap:8px;min-height:var(--tap-min);font-size:15px;font-weight:500;letter-spacing:.02em;color:var(--ochre-300)}
+.end .sms span{border-bottom:1px solid rgba(223,196,138,.45);padding-bottom:2px;transition:border-color 160ms var(--ease-standard)}
+.end .sms:hover span{border-color:var(--ochre-300)}
+@media (max-width:720px){.end .reach{align-items:flex-start;text-align:left}}
+.end-bar{margin-top:clamp(40px,5vw,64px);padding-top:18px;border-top:1px solid rgba(250,248,245,.16);display:flex;flex-wrap:wrap;gap:6px 18px;font-size:15px}
+.end-bar b{font-family:var(--font-display);font-weight:400;color:var(--paper-050)}
+.end-bar a{color:var(--paper-050);border-bottom:1px solid rgba(223,196,138,.5);padding-bottom:1px}
+.end-bar a:hover{color:var(--ochre-300)}
+
+/* motion — simple one-time fades */
+.js .rise{opacity:0;transform:translateY(12px)}
+.js .rise.in{opacity:1;transform:none;transition:opacity 450ms cubic-bezier(.2,.6,.2,1),transform 450ms cubic-bezier(.2,.6,.2,1)}
+.js .hero-shot.rise.in{transition-delay:90ms}
+
+@media (max-width:1024px){:root{--sec:76px}}
+@media (max-width:960px){.nav .links a.q-link{display:none}.nav .links{gap:20px}}
+@media (max-width:640px){.nav .mark span{display:none}}
+@media (max-width:860px){
+  :root{--sec:60px}
+  .hero,.see,.work{grid-template-columns:minmax(0,1fr)}
+  .see-pics{order:0;margin:-6% 0 -8%}
+  .see-pics .cut{max-width:100%}
+  .work .steps{margin-bottom:8px}
+  .work .arrive{margin-right:calc(-1 * var(--pad-x));margin-left:18%;margin-top:0}
+  .work .arrive img{max-height:none}
+  .hero{padding-top:36px}
+  .hero-copy .sub{max-width:none}
+  .hero-shot{margin-right:0}
+  .hero-shot img{width:100%;max-height:none}
+  .how .plate{order:2;min-height:0}
+  .how .plate img{position:static;height:auto;aspect-ratio:4/5;max-height:440px}
+}
+@media (max-width:720px){
+  .ask{grid-template-columns:minmax(0,1fr)}
+  .packs{grid-template-columns:minmax(0,1fr)}
+  .co span{font-size:11px}
+}
+@media (max-width:460px){
+  .nav .links a:not(.cta){display:none}
+  .specs{flex-direction:column;gap:2px}
+  .specs span:not(:last-child)::after{content:none;padding:0}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .rise,.js .rise.in{opacity:1;transform:none;transition:none}
+  .lnk .arw,.q .sign::after{transition:none}
 }

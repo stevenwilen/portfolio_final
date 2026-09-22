@@ -1,66 +1,43 @@
 // Steven Wilen · QR listing cards
-document.addEventListener('DOMContentLoaded',function(){
-  document.getElementById('year').textContent=new Date().getFullYear();
+document.documentElement.classList.remove('js');
 
-  // sticky header hairline
-  var header=document.querySelector('.site-header');
-  var onScroll=function(){header.classList.toggle('past',window.scrollY>120)};
-  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
-
-  // reveal on scroll
-  var io=new IntersectionObserver(function(es){
-    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
-  },{threshold:.2});
-  document.querySelectorAll('[data-reveal]').forEach(function(el){io.observe(el)});
-
-  // inquiry form. No backend on a static host: point FORM_ENDPOINT at a form
-  // service (Formspree, Basin, Vercel serverless route). With it left empty the
-  // form opens a pre-filled email instead, so it never silently drops a message.
-  var FORM_ENDPOINT='https://formspree.io/f/xjgzyady';
-  var form=document.getElementById('inquiry');
-  var sent=document.getElementById('form-sent');
-  function invalid(el,msg){
-    var field=el.closest('.field');
-    field.classList.add('invalid');
-    field.querySelector('.err').textContent=msg;
+// One-time section entrances. 12px, 400ms, fired when 15% of the group is in
+// view. Checked on scroll rather than via IntersectionObserver, which does not
+// fire reliably inside a nested preview frame.
+//
+// The `js` class is what hides content, so it is only added once a real
+// viewport height has been measured — if that never happens, the page stays
+// fully visible rather than blank. A safety net reveals anything still queued
+// after 1.5s, so no mistimed measurement can leave a section invisible.
+var queue=[].slice.call(document.querySelectorAll('.rise'));
+var armed=false;
+function revealAll(){queue.forEach(function(el){el.classList.add('in')});queue.length=0}
+function tick(){
+  var vh=window.innerHeight;
+  if(!vh){return}
+  if(!armed){document.documentElement.classList.add('js');armed=true}
+  for(var i=queue.length-1;i>=0;i--){
+    var el=queue[i],r=el.getBoundingClientRect();
+    var vis=Math.min(r.bottom,vh)-Math.max(r.top,0);
+    if(r.top<vh*0.92&&(vis>r.height*0.15||vis>120)){el.classList.add('in');queue.splice(i,1)}
   }
-  function clearErrors(){
-    form.querySelectorAll('.field.invalid').forEach(function(f){f.classList.remove('invalid')});
-  }
-  if(form){
-    form.addEventListener('submit',function(ev){
-      ev.preventDefault();
-      clearErrors();
-      var name=form.querySelector('#f-name');
-      var email=form.querySelector('#f-email');
-      var details=form.querySelector('#f-details');
-      var ok=true;
-      if(!name.value.trim()){invalid(name,'Your name, so I know who I\u2019m replying to.');ok=false}
-      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())){invalid(email,'A working email address.');ok=false}
-      if(!details.value.trim()){invalid(details,'A sentence or two about the project.');ok=false}
-      if(!ok){form.querySelector('.field.invalid input, .field.invalid textarea').focus();return}
+}
+window.addEventListener('scroll',tick,{passive:true});
+window.addEventListener('resize',tick);
+window.addEventListener('load',tick);
+tick();requestAnimationFrame(tick);
+setTimeout(tick,300);setTimeout(tick,900);
+setTimeout(function(){if(!armed){document.documentElement.classList.add('js')}revealAll()},1500);
 
-      var data={name:name.value.trim(),email:email.value.trim(),details:details.value.trim()};
-      var done=function(){form.hidden=true;sent.hidden=false;form.reset();grow()};
-
-      if(FORM_ENDPOINT){
-        var btn=form.querySelector('button[type="submit"]');
-        btn.disabled=true;btn.textContent='Sending\u2026';
-        fetch(FORM_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(data)})
-          .then(function(r){if(!r.ok)throw new Error('bad status');done()})
-          .catch(function(){btn.disabled=false;btn.textContent='Send';invalid(details,'That didn\u2019t send. Email steven.wilen@gmail.com instead.')});
-      }else{
-        var body='Name: '+data.name+'\nEmail: '+data.email+'\n\n'+data.details;
-        window.location.href='mailto:steven.wilen@gmail.com?subject='+encodeURIComponent('Guide project inquiry - '+data.name)+'&body='+encodeURIComponent(body);
-        done();
-      }
+// FAQ disclosures. Work with animation disabled; the panel is a real [hidden].
+document.querySelectorAll('.q button').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var panel=document.getElementById(btn.getAttribute('aria-controls'));
+    var open=btn.getAttribute('aria-expanded')==='true';
+    document.querySelectorAll('.q button').forEach(function(b){
+      b.setAttribute('aria-expanded','false');
+      document.getElementById(b.getAttribute('aria-controls')).hidden=true;
     });
-  }
-  // Textarea grows with its content, so there is no resize grabber to drag.
-  var ta=document.getElementById('f-details');
-  function grow(){if(!ta)return;ta.style.height='auto';ta.style.height=Math.min(ta.scrollHeight,420)+'px'}
-  if(ta){ta.addEventListener('input',grow);grow()}
-
-  var again=document.getElementById('form-again');
-  if(again){again.addEventListener('click',function(){sent.hidden=true;form.hidden=false;grow()})}
+    if(!open){btn.setAttribute('aria-expanded','true');panel.hidden=false}
+  });
 });
