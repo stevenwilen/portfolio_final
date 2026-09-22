@@ -45,7 +45,7 @@ img{max-width:100%;display:block}
 
 /* hero */
 .hero{padding:clamp(18px,2.6vw,36px) var(--pad-x) clamp(32px,3.4vw,46px)}
-.hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(28px,5vw,72px);align-items:center}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:center}
 .hero h1{font-size:clamp(33px,4.9vw,62px);line-height:1.07;margin-bottom:var(--sp-5)}
 .hero h1 .line{display:block;overflow:hidden;padding-bottom:.14em;margin-bottom:-.14em}
 .hero h1 .line:last-child{margin-bottom:0}
@@ -160,9 +160,10 @@ img{max-width:100%;display:block}
 /* The printed half of the job. The guide is the thing they scan into; this is
    the thing they scan. Showing one card next to the screens is the only way a
    page explains a physical deliverable. */
-.card-row{margin-top:clamp(30px,4vw,52px);padding-top:clamp(26px,3.4vw,40px);border-top:1px solid var(--border-soft);display:grid;grid-template-columns:minmax(0,400px) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:center}
+.card-row{padding-top:clamp(8px,1.6vw,18px);display:grid;grid-template-columns:minmax(0,400px) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:center}
 .card-shot{width:100%;height:auto;border-radius:var(--radius-sm);box-shadow:var(--shadow-md)}
-.card-copy h3{font-size:clamp(21px,2.4vw,28px);margin:var(--sp-3) 0 var(--sp-3)}
+.card-copy h2{font-size:clamp(24px,3vw,36px);margin:var(--sp-3) 0}
+.card-copy .btn{margin-top:var(--sp-5)}
 .card-copy p{font-size:16px;color:var(--text-muted);max-width:56ch}
 .flow{margin-top:clamp(36px,5vw,64px);display:flex;align-items:center;gap:clamp(12px,2vw,22px);flex-wrap:wrap;font-family:var(--font-mono);font-size:13px;color:var(--text-muted)}
 .flow .rule{width:clamp(24px,4vw,56px);height:1px;background:var(--border-soft)}
