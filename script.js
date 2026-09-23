@@ -1,4 +1,23 @@
 // Steven Wilen · QR listing cards
+
+// Google Analytics 4. Paste the measurement ID (G-XXXXXXXXXX) from GA4 >
+// Admin > Data streams and it loads; left empty, nothing loads. Every tap on
+// a text or call link is sent as generate_lead, the site's one conversion.
+var GA4_ID='';
+(function(){
+  if(!GA4_ID)return;
+  window.dataLayer=window.dataLayer||[];
+  window.gtag=function(){dataLayer.push(arguments)};
+  gtag('js',new Date());gtag('config',GA4_ID);
+  var s=document.createElement('script');s.async=true;
+  s.src='https://www.googletagmanager.com/gtag/js?id='+GA4_ID;document.head.appendChild(s);
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a[href^="sms:"],a[href^="tel:"],a[href^="mailto:"]');
+    if(!a)return;
+    var how=a.getAttribute('href').split(':')[0];
+    gtag('event','generate_lead',{method:how==='sms'?'text':how==='tel'?'call':'email',link_text:a.textContent.trim().slice(0,60),transport_type:'beacon'});
+  });
+})();
 (function(){
 var root=document.documentElement;
 root.classList.remove('js');

@@ -1,4 +1,21 @@
+# stevenwilen.dev wants to be found and cited, by search engines and AI tools.
+# Everything is allowed. The AI search and answer crawlers are also named
+# explicitly, so a later rule for one bot can't shut them out by accident.
+
 User-agent: *
+Allow: /
+
+# Search and live fetches: blocking these would remove the site from answers.
+User-agent: Googlebot
+User-agent: Bingbot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Applebot
+User-agent: DuckDuckBot
 Allow: /
 
 Sitemap: https://stevenwilen.dev/sitemap.xml
