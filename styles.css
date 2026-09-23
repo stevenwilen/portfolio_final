@@ -126,7 +126,7 @@ a{color:var(--text-strong)}a:hover{color:var(--ochre-700)}
 .nav .links a.cta:hover{color:var(--ochre-700)}
 
 /* hero — copy left, the fan right, straight on the cream */
-.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:clamp(28px,4vw,56px);align-items:center;padding-top:clamp(32px,4vw,56px)}
+.hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(28px,4vw,56px);align-items:center;padding-top:clamp(32px,4vw,56px)}
 .hero-copy>.hero-t{margin-top:var(--lab-title)}
 .hero-copy .sub{margin-top:24px;max-width:22ch}
 .hero-copy .note{margin-top:18px;max-width:44ch}
