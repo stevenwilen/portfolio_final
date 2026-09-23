@@ -139,6 +139,10 @@ a{color:var(--text-strong)}a:hover{color:var(--ochre-700)}
 .hero-shot{margin-right:0}
 .hero-shot img{width:100%;max-height:min(78vh,660px);object-fit:contain;object-position:right center}
 
+#cards{padding-top:clamp(24px,3vw,40px)}
+#pricing{padding-top:clamp(32px,4vw,56px)}
+.nb{white-space:nowrap}
+
 /* pricing — two packages side by side, specs in their own row below */
 .packs{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,32px);margin-top:var(--head-body);align-items:stretch}
 .specs{max-width:none;margin-top:clamp(20px,2.4vw,28px);border-top:1px solid var(--border-soft);padding-top:20px;display:flex;flex-wrap:wrap;gap:6px 0;font-family:var(--font-mono);font-size:14px;line-height:1.7;color:var(--text-muted)}
@@ -159,9 +163,6 @@ a{color:var(--text-strong)}a:hover{color:var(--ochre-700)}
 .see-copy p{margin-top:18px;max-width:40ch}
 .see-copy p+p{margin-top:14px}
 .see-copy .lnk{margin-top:28px}
-/* Phones only — on a phone the example page opens in the same place a buyer would see it. */
-.see-mobile{display:none}
-@media (max-width:860px){.see-mobile{display:inline-flex}}
 /* What is on the page — a small ruled 2 × 2 sheet, like listing-sheet facts. */
 .see-list{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 clamp(20px,2.4vw,32px);margin:28px 0 0;max-width:520px}
 .see-list div{border-top:1px solid var(--border-soft);padding:14px 0 16px;min-width:0}
@@ -227,15 +228,16 @@ a{color:var(--text-strong)}a:hover{color:var(--ochre-700)}
 @media (max-width:860px){
   :root{--sec:60px}
   .hero,.see,.work{grid-template-columns:minmax(0,1fr)}
-  .see-pics{order:0;margin:-6% 0 -8%}
-  .see-pics .cut{max-width:100%}
+  #cards{padding-top:var(--sec)}
+  .see-pics{order:0;margin:-16% 0 -8%}
+  .see-pics .cut{max-width:min(100%,520px)}
   .work .steps{margin-bottom:8px}
-  .work .arrive{margin-right:calc(-1 * var(--pad-x));margin-left:18%;margin-top:0}
-  .work .arrive img{max-height:none}
+  .work .arrive{margin:0;justify-content:center}
+  .work .arrive img{max-height:none;max-width:min(100%,460px)}
   .hero{padding-top:36px}
   .hero-copy .sub{max-width:none}
-  .hero-shot{margin-right:0}
-  .hero-shot img{width:100%;max-height:none}
+  .hero-shot{margin-right:0;order:-1}
+  .hero-shot img{width:100%;max-width:560px;max-height:none;margin:0 auto}
   .how .plate{order:2;min-height:0}
   .how .plate img{position:static;height:auto;aspect-ratio:4/5;max-height:440px}
 }
