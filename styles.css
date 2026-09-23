@@ -235,18 +235,12 @@ a{color:var(--text-strong)}a:hover{color:var(--ochre-700)}
    page is fully visible without it. Hidden states are removed from the DOM
    again once an entrance has played, leaving the resting styles above. */
 
-/* single elements: photos */
+/* Only the hero has an entrance; everything below it is visible from the start. */
 .js .rise{opacity:0;transform:translateY(16px)}
 .js .rise.on{opacity:1;transform:none;transition:opacity 700ms var(--ease-soft),transform 900ms var(--ease-soft)}
 /* the hero cards settle into place, a beat after the copy starts */
 .js .hero-shot.rise{transform:translateY(28px) scale(.97) rotate(-1.4deg)}
 .js .hero-shot.rise.on{transform:none;transition:opacity 900ms var(--ease-soft) 260ms,transform 1300ms var(--ease-soft) 260ms}
-/* the card and phone come up with a slight turn */
-.js .see-pics.rise{transform:translateY(32px) rotate(1.2deg)}
-.js .see-pics.rise.on{transform:none;transition:opacity 800ms var(--ease-soft),transform 1200ms var(--ease-soft)}
-/* the hands rise up out of the footer */
-.js .arrive.rise{opacity:1;transform:translateY(72px)}
-.js .arrive.rise.on{transform:none;transition:transform 1400ms var(--ease-soft)}
 
 /* groups: children follow one another, --i set by script.js */
 .js [data-stagger]>*{opacity:0;transform:translateY(14px)}
@@ -255,16 +249,6 @@ a{color:var(--text-strong)}a:hover{color:var(--ochre-700)}
 .js .hero-copy[data-stagger]>.hero-t{opacity:1;transform:none;transition:none}
 .js .hero-copy[data-stagger] .ln>span{transform:translateY(106%)}
 .js .hero-copy[data-stagger].on .ln>span{transform:none;transition:transform 1100ms var(--ease-soft);transition-delay:calc(var(--i,0) * 80ms + var(--l,0) * 110ms)}
-/* step rules draw left to right as each step arrives */
-.js .steps[data-stagger]{border-bottom-color:transparent}
-.js .steps[data-stagger]>.step{border-top-color:transparent;position:relative}
-.js .steps[data-stagger]>.step::before,.js .steps[data-stagger]::after{content:"";position:absolute;left:0;right:0;height:1px;background:var(--border-soft);transform:scaleX(0);transform-origin:left}
-.js .steps[data-stagger]>.step::before{top:-1px}
-.js .steps[data-stagger]::after{bottom:-1px;--i:4}
-.js .steps[data-stagger].on>.step::before,.js .steps[data-stagger].on::after{transform:scaleX(1);transition:transform 900ms var(--ease-soft);transition-delay:calc(var(--i,0) * 110ms)}
-.js .steps[data-stagger].on>*{transition-delay:calc(var(--i,0) * 110ms + 80ms)}
-/* the spec line reads left to right */
-.js .specs[data-stagger]:not(.on)>*{transform:translateY(6px)}
 
 /* ambient: the hero cards breathe, very slowly */
 @keyframes drift{0%,100%{transform:translate3d(0,0,0) rotate(0)}50%{transform:translate3d(0,-7px,0) rotate(-.35deg)}}
