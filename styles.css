@@ -237,6 +237,7 @@ a{color:var(--text-strong)}a:hover{color:var(--ochre-700)}
   .hero{padding-top:36px}
   .hero-copy .sub{max-width:none}
   .hero-copy .note{display:none}
+  .see-list{display:none}
   .hero-shot{margin-right:0}
   .hero-shot img{width:100%;max-width:560px;max-height:none;margin:0 auto}
   .how .plate{order:2;min-height:0}
