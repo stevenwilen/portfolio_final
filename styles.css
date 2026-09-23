@@ -232,7 +232,7 @@ a{color:var(--text-strong)}a:hover{color:var(--ochre-700)}
   .see-pics{order:0;margin:-16% 0 -8%}
   .see-pics .cut{max-width:min(100%,520px)}
   .work .steps{margin-bottom:8px}
-  .work .arrive{margin:0;justify-content:center}
+  .work .arrive{margin:0 calc(-1 * var(--pad-x)) 0 0;justify-content:flex-end}
   .work .arrive img{max-height:none;max-width:min(100%,460px)}
   .hero{padding-top:36px}
   .hero-copy .sub{max-width:none}
@@ -241,6 +241,9 @@ a{color:var(--text-strong)}a:hover{color:var(--ochre-700)}
   .how .plate{order:2;min-height:0}
   .how .plate img{position:static;height:auto;aspect-ratio:4/5;max-height:440px}
 }
+/* Phones: the photo fills the column, so centre it. Wider than that it would
+   float with the wrist cut mid-screen, so it runs off the right edge instead. */
+@media (max-width:520px){.work .arrive{margin-right:0;justify-content:center}}
 @media (max-width:720px){
   .ask{grid-template-columns:minmax(0,1fr)}
   .packs{grid-template-columns:minmax(0,1fr)}
