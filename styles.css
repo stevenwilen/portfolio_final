@@ -263,7 +263,7 @@ a{color:var(--text-strong)}a:hover{color:var(--ochre-700)}
   :root{--sec:60px}
   .hero,.see,.work{grid-template-columns:minmax(0,1fr)}
   #cards{padding-top:var(--sec)}
-  .see-pics{order:0;margin:-16% 0 -8%}
+  .see-pics{order:0;margin:-4% 0 -8%}
   .see-pics .cut{max-width:min(100%,520px)}
   .work .steps{margin-bottom:8px}
   .work .arrive{margin:0 calc(-1 * var(--pad-x)) 0 0;justify-content:flex-end}
