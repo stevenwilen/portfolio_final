@@ -104,15 +104,22 @@ section{padding-top:var(--sec)}
 /* controls */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;white-space:nowrap;font-family:var(--font-sans);font-size:16px;font-weight:500;padding:14px 24px;min-height:var(--tap-min);border:1px solid var(--ink-900);border-radius:var(--radius-sm);background:var(--ink-900);color:var(--text-inverse);cursor:pointer;transition:background 160ms var(--ease-standard),border-color 160ms var(--ease-standard)}
 .btn:hover{background:var(--ink-700);border-color:var(--ink-700);color:var(--text-inverse)}
+.btn{transition:background 160ms var(--ease-standard),border-color 160ms var(--ease-standard),transform 120ms var(--ease-standard)}
+.btn:active{transform:translateY(1px)}
 .lnk{white-space:nowrap;display:inline-flex;align-items:center;gap:8px;min-height:var(--tap-min);font-size:16px;font-weight:500;color:var(--text-strong);border-bottom:1px solid var(--ochre-300);padding-bottom:2px;transition:color 160ms var(--ease-standard),border-color 160ms var(--ease-standard)}
-.lnk:hover{color:var(--ochre-700);border-bottom-color:var(--ochre-600)}
+.lnk{position:relative}
+.lnk::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--ochre-600);transform:scaleX(0);transform-origin:right;transition:transform 420ms var(--ease-soft)}
+.lnk:hover{color:var(--ochre-700)}
+.lnk:hover::after{transform:scaleX(1);transform-origin:left}
 .lnk .arw{transition:transform 160ms var(--ease-standard)}
 .lnk:hover .arw{transform:translateX(3px)}
 a{color:var(--text-strong)}a:hover{color:var(--ochre-700)}
 :focus-visible{outline:2px solid var(--ochre-600);outline-offset:3px}
 
 /* nav — one thin sticky line: name and tagline inline, links, a small text-link CTA */
-.nav{background:var(--surface-page);border-bottom:1px solid var(--border-hairline)}
+.nav{position:sticky;top:0;z-index:50;background:var(--surface-page);border-bottom:1px solid transparent;transition:border-color 320ms var(--ease-standard)}
+.nav.scrolled{border-bottom-color:var(--border-hairline)}
+[id]{scroll-margin-top:72px}
 .nav .in{display:flex;align-items:center;justify-content:space-between;gap:24px;height:64px;padding:0 var(--pad-x);max-width:var(--page);margin:0 auto}
 .nav .mark{display:flex;align-items:baseline;gap:12px;min-width:0}
 .nav .mark b{font-family:var(--font-display);font-weight:400;font-size:18px;color:var(--text-strong);line-height:1;white-space:nowrap}
@@ -128,6 +135,8 @@ a{color:var(--text-strong)}a:hover{color:var(--ochre-700)}
 /* hero — copy left, the fan right, straight on the cream */
 .hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(28px,4vw,56px);align-items:center;padding-top:clamp(32px,4vw,56px)}
 .hero-copy>.hero-t{margin-top:var(--lab-title)}
+.hero-t .ln{display:block;overflow:hidden;padding-bottom:.1em;margin-bottom:-.1em}
+.hero-t .ln>span{display:block}
 .hero-copy .sub{margin-top:24px;max-width:22ch}
 .hero-copy .note{margin-top:18px;max-width:44ch}
 .hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin-top:32px}
@@ -149,6 +158,8 @@ a{color:var(--text-strong)}a:hover{color:var(--ochre-700)}
 .specs span{white-space:nowrap}
 .specs span:not(:last-child)::after{content:"·";padding:0 12px;color:var(--border-soft)}
 .pack{min-width:0;display:flex;flex-direction:column;border:1px solid var(--border-soft);border-radius:var(--radius-sm);padding:clamp(22px,2.4vw,30px)}
+.pack{transition:translate 260ms var(--ease-soft),box-shadow 260ms var(--ease-soft),border-color 260ms var(--ease-standard)}
+@media (hover:hover){.pack:hover{translate:0 -3px;box-shadow:var(--shadow-md);border-color:var(--paper-300)}}
 .pack--rec{background:var(--paper-100);border-color:var(--paper-300);border-left:2px solid var(--ochre-500)}
 .pack-top{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 20px;align-items:baseline}
 .pack-top h3{font-family:var(--font-display);font-weight:400;font-size:clamp(21px,2.2vw,26px);line-height:1.2;color:var(--text-strong);margin:0}
@@ -160,7 +171,7 @@ a{color:var(--text-strong)}a:hover{color:var(--ochre-700)}
 /* what buyers see — copy left, the scan and the page it opens side by side */
 .see{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4.5vw,64px);align-items:center}
 .see-copy .title{margin-top:var(--lab-title)}
-.see-copy p{margin-top:18px;max-width:40ch}
+.see-copy p{margin-top:20px;max-width:40ch}
 .see-copy p+p{margin-top:14px}
 .see-copy .lnk{margin-top:28px}
 /* What is on the page — a small ruled 2 × 2 sheet, like listing-sheet facts. */
@@ -178,9 +189,11 @@ a{color:var(--text-strong)}a:hover{color:var(--ochre-700)}
 /* how it works — steps left, what arrives on the right, same height */
 .work{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:clamp(28px,4.5vw,64px);align-items:stretch;margin-top:var(--head-body)}
 .steps{border-bottom:1px solid var(--border-soft)}
-.step{border-top:1px solid var(--border-soft);padding:clamp(14px,1.8vw,20px) 0;display:grid;grid-template-columns:44px minmax(0,1fr);gap:0 clamp(16px,2vw,24px)}
-.step .n{font-family:var(--font-mono);font-size:14px;font-weight:500;letter-spacing:.06em;color:var(--ochre-600);font-variant-numeric:tabular-nums;padding-top:5px}
+.step{border-top:1px solid var(--border-soft);padding:clamp(14px,1.8vw,20px) 0;display:grid;grid-template-columns:44px minmax(0,1fr);gap:0 clamp(16px,2vw,24px);align-items:baseline}
+.step .n{font-family:var(--font-mono);font-size:14px;font-weight:500;letter-spacing:.06em;color:var(--ochre-600);font-variant-numeric:tabular-nums}
 .step h3{font-family:var(--font-display);font-weight:400;font-size:21px;line-height:1.2;color:var(--text-strong);margin:0;text-wrap:balance}
+.step h3{transition:translate 260ms var(--ease-soft)}
+@media (hover:hover){.step:hover h3{translate:4px 0}}
 .step p{margin-top:6px;font-size:15px;line-height:1.55;color:var(--text-muted)}
 /* The hands are cut at the photo's bottom and right edges, so the photo is
    anchored to both: it sits directly on the ink closing band and runs off the
@@ -217,10 +230,47 @@ a{color:var(--text-strong)}a:hover{color:var(--ochre-700)}
 .end-bar a{color:var(--paper-050);border-bottom:1px solid rgba(223,196,138,.5);padding-bottom:1px}
 .end-bar a:hover{color:var(--ochre-300)}
 
-/* motion — simple one-time fades */
-.js .rise{opacity:0;transform:translateY(12px)}
-.js .rise.in{opacity:1;transform:none;transition:opacity 450ms cubic-bezier(.2,.6,.2,1),transform 450ms cubic-bezier(.2,.6,.2,1)}
-.js .hero-shot.rise.in{transition-delay:90ms}
+/* motion
+   Everything below only applies once script.js has put .js on <html>, so the
+   page is fully visible without it. Hidden states are removed from the DOM
+   again once an entrance has played, leaving the resting styles above. */
+
+/* single elements: photos */
+.js .rise{opacity:0;transform:translateY(16px)}
+.js .rise.on{opacity:1;transform:none;transition:opacity 700ms var(--ease-soft),transform 900ms var(--ease-soft)}
+/* the hero cards settle into place, a beat after the copy starts */
+.js .hero-shot.rise{transform:translateY(28px) scale(.97) rotate(-1.4deg)}
+.js .hero-shot.rise.on{transform:none;transition:opacity 900ms var(--ease-soft) 260ms,transform 1300ms var(--ease-soft) 260ms}
+/* the card and phone come up with a slight turn */
+.js .see-pics.rise{transform:translateY(32px) rotate(1.2deg)}
+.js .see-pics.rise.on{transform:none;transition:opacity 800ms var(--ease-soft),transform 1200ms var(--ease-soft)}
+/* the hands rise up out of the footer */
+.js .arrive.rise{opacity:1;transform:translateY(72px)}
+.js .arrive.rise.on{transform:none;transition:transform 1400ms var(--ease-soft)}
+
+/* groups: children follow one another, --i set by script.js */
+.js [data-stagger]>*{opacity:0;transform:translateY(14px)}
+.js [data-stagger].on>*{opacity:1;transform:none;transition:opacity 700ms var(--ease-soft),transform 850ms var(--ease-soft);transition-delay:calc(var(--i,0) * 80ms)}
+/* the headline rises out of its own line masks instead of fading */
+.js .hero-copy[data-stagger]>.hero-t{opacity:1;transform:none;transition:none}
+.js .hero-copy[data-stagger] .ln>span{transform:translateY(106%)}
+.js .hero-copy[data-stagger].on .ln>span{transform:none;transition:transform 1100ms var(--ease-soft);transition-delay:calc(var(--i,0) * 80ms + var(--l,0) * 110ms)}
+/* step rules draw left to right as each step arrives */
+.js .steps[data-stagger]{border-bottom-color:transparent}
+.js .steps[data-stagger]>.step{border-top-color:transparent;position:relative}
+.js .steps[data-stagger]>.step::before,.js .steps[data-stagger]::after{content:"";position:absolute;left:0;right:0;height:1px;background:var(--border-soft);transform:scaleX(0);transform-origin:left}
+.js .steps[data-stagger]>.step::before{top:-1px}
+.js .steps[data-stagger]::after{bottom:-1px;--i:4}
+.js .steps[data-stagger].on>.step::before,.js .steps[data-stagger].on::after{transform:scaleX(1);transition:transform 900ms var(--ease-soft);transition-delay:calc(var(--i,0) * 110ms)}
+.js .steps[data-stagger].on>*{transition-delay:calc(var(--i,0) * 110ms + 80ms)}
+/* the spec line reads left to right */
+.js .specs[data-stagger]:not(.on)>*{transform:translateY(6px)}
+
+/* ambient: the hero cards breathe, very slowly */
+@keyframes drift{0%,100%{transform:translate3d(0,0,0) rotate(0)}50%{transform:translate3d(0,-7px,0) rotate(-.35deg)}}
+.hero-shot img{animation:drift 9s ease-in-out 1.8s infinite;will-change:transform}
+/* the tilt layer follows the pointer on desktop; eased here, set in script.js */
+.tilt{transition:transform 900ms var(--ease-soft);will-change:transform}
 
 @media (max-width:1024px){:root{--sec:76px}}
 @media (max-width:960px){.nav .links a.q-link{display:none}.nav .links{gap:20px}}
@@ -254,6 +304,6 @@ a{color:var(--text-strong)}a:hover{color:var(--ochre-700)}
   .specs span:not(:last-child)::after{content:none;padding:0}
 }
 @media (prefers-reduced-motion:reduce){
-  .js .rise,.js .rise.in{opacity:1;transform:none;transition:none}
-  .lnk .arw,.q .sign::after{transition:none}
+  .hero-shot img{animation:none}
+  .tilt,.lnk::after,.pack,.step h3,.btn,.nav{transition:none}
 }
