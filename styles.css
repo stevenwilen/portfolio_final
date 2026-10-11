@@ -100,6 +100,8 @@ section{padding-top:var(--sec)}
 .head .title{margin-top:var(--lab-title)}
 .head p{margin-top:20px}
 .cut{filter:drop-shadow(0 26px 30px rgba(15,23,32,.16)) drop-shadow(0 5px 8px rgba(15,23,32,.08))}
+/* Photos with their own cream background and baked shadow: no CSS shadow, or it would outline the rectangle. */
+.cut.flat{filter:none}
 
 /* controls */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;white-space:nowrap;font-family:var(--font-sans);font-size:16px;font-weight:500;padding:14px 24px;min-height:var(--tap-min);border:1px solid var(--ink-900);border-radius:var(--radius-sm);background:var(--ink-900);color:var(--text-inverse);cursor:pointer;transition:background 160ms var(--ease-standard),border-color 160ms var(--ease-standard)}
@@ -179,12 +181,9 @@ a{color:var(--text-strong)}a:hover{color:var(--ochre-700)}
 .see-list div{border-top:1px solid var(--border-soft);padding:14px 0 16px;min-width:0}
 .see-list dt{font-family:var(--font-display);font-size:19px;line-height:1.25;color:var(--text-strong)}
 .see-list dd{margin:4px 0 0;font-size:15px;line-height:1.5;color:var(--text-muted)}
-/* The PNG has ~14% empty canvas above and below the phone; pull it in so the
-   section starts where the product does, not where its transparent border does. */
-.see-pics{display:flex;justify-content:center;align-items:center;order:-1;margin:-10% 0 -13%}
-.see-pics img{aspect-ratio:4/5;object-fit:cover}
-/* Full-canvas PNG so the baked shadow fades out instead of being clipped. */
-.see-pics .cut{width:auto;max-width:118%;max-height:min(94vh,800px);object-fit:contain;margin:0 auto}
+/* The photo is cropped close to the phone and card, so it needs no pulling in. */
+.see-pics{display:flex;justify-content:center;align-items:center;order:-1}
+.see-pics .cut{width:auto;max-width:100%;max-height:min(86vh,720px);object-fit:contain;margin:0 auto}
 
 /* how it works — steps left, what arrives on the right, same height */
 .work{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:clamp(28px,4.5vw,64px);align-items:stretch;margin-top:var(--head-body)}
@@ -261,7 +260,7 @@ a{color:var(--text-strong)}a:hover{color:var(--ochre-700)}
   :root{--sec:60px}
   .hero,.see,.work{grid-template-columns:minmax(0,1fr)}
   #cards{padding-top:var(--sec)}
-  .see-pics{order:0;margin:-4% 0 -8%}
+  .see-pics{order:0;margin:8px 0 0}
   .see-pics .cut{max-width:min(100%,520px)}
   .work .steps{margin-bottom:8px}
   .work .arrive{margin:0 calc(-1 * var(--pad-x)) 0 0;justify-content:flex-end}
