@@ -150,6 +150,7 @@ a{color:var(--text-strong)}a:hover{color:var(--ochre-700)}
 .hero-shot{margin-right:0}
 .hero-shot img{width:100%;max-height:min(78vh,660px);object-fit:contain;object-position:right center}
 
+#cards{padding-top:clamp(24px,3vw,40px)}
 #pricing{padding-top:clamp(32px,4vw,56px)}
 .nb{white-space:nowrap}
 
@@ -168,18 +169,6 @@ a{color:var(--text-strong)}a:hover{color:var(--ochre-700)}
 .pack .rec-tag{display:block;margin-top:12px;font-size:13px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--ochre-700)}
 .pack p{margin-top:16px;font-size:16px;color:var(--text-muted);max-width:42ch}
 .pack .lnk{margin-top:auto;padding-top:22px;align-self:flex-start}
-
-/* what I make — three tiles, each a product shot on the cream with one line under it */
-.make{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,40px);margin-top:var(--head-body)}
-.tile{margin:0;min-width:0}
-.tile .shot{aspect-ratio:3/2;display:flex;align-items:center;justify-content:center}
-.tile .shot img{width:100%;height:100%;object-fit:contain}
-.tile h3{font-family:var(--font-display);font-weight:400;font-size:21px;line-height:1.25;color:var(--text-strong);margin:18px 0 0}
-.tile p{margin-top:6px;font-size:15px;line-height:1.55;color:var(--text-muted);max-width:36ch}
-.make-more{margin-top:clamp(28px,3vw,40px);font-size:15px;line-height:1.55;color:var(--text-muted);max-width:none}
-.make-more a{color:var(--text-strong);border-bottom:1px solid var(--ochre-300);padding-bottom:1px}
-.quote{margin-top:18px;font-size:16px;color:var(--text-body);max-width:none}
-.quote a{border-bottom:1px solid var(--ochre-300);padding-bottom:1px}
 
 /* what buyers see — copy left, the scan and the page it opens side by side */
 .see{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4.5vw,64px);align-items:center}
@@ -270,6 +259,7 @@ a{color:var(--text-strong)}a:hover{color:var(--ochre-700)}
 @media (max-width:860px){
   :root{--sec:60px}
   .hero,.see,.work{grid-template-columns:minmax(0,1fr)}
+  #cards{padding-top:var(--sec)}
   .see-pics{order:0;margin:8px 0 0}
   .see-pics .cut{max-width:min(100%,520px)}
   .work .steps{margin-bottom:8px}
@@ -285,7 +275,6 @@ a{color:var(--text-strong)}a:hover{color:var(--ochre-700)}
   .how .plate img{position:static;height:auto;aspect-ratio:4/5;max-height:440px}
 }
 @media (max-width:720px){
-  .make{grid-template-columns:minmax(0,1fr);gap:36px}
   .ask{grid-template-columns:minmax(0,1fr)}
   .packs{grid-template-columns:minmax(0,1fr)}
   .co span{font-size:11px}
