@@ -177,6 +177,8 @@ a{color:var(--text-strong)}a:hover{color:var(--ochre-700)}
 .tile .shot img{width:100%;height:100%;object-fit:contain}
 .tile h3{font-family:var(--font-display);font-weight:400;font-size:21px;line-height:1.25;color:var(--text-strong);margin:18px 0 0}
 .tile p{margin-top:6px;font-size:15px;line-height:1.55;color:var(--text-muted);max-width:36ch}
+.make-more{margin-top:clamp(28px,3vw,40px);font-size:15px;line-height:1.55;color:var(--text-muted);max-width:none}
+.make-more a{color:var(--text-strong);border-bottom:1px solid var(--ochre-300);padding-bottom:1px}
 .quote{margin-top:18px;font-size:16px;color:var(--text-body);max-width:none}
 .quote a{border-bottom:1px solid var(--ochre-300);padding-bottom:1px}
 
