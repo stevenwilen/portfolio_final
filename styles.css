@@ -150,7 +150,6 @@ a{color:var(--text-strong)}a:hover{color:var(--ochre-700)}
 .hero-shot{margin-right:0}
 .hero-shot img{width:100%;max-height:min(78vh,660px);object-fit:contain;object-position:right center}
 
-#make{padding-top:clamp(24px,3vw,40px)}
 #pricing{padding-top:clamp(32px,4vw,56px)}
 .nb{white-space:nowrap}
 
@@ -271,7 +270,6 @@ a{color:var(--text-strong)}a:hover{color:var(--ochre-700)}
 @media (max-width:860px){
   :root{--sec:60px}
   .hero,.see,.work{grid-template-columns:minmax(0,1fr)}
-  #make{padding-top:var(--sec)}
   .see-pics{order:0;margin:8px 0 0}
   .see-pics .cut{max-width:min(100%,520px)}
   .work .steps{margin-bottom:8px}
